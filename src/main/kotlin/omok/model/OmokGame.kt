@@ -9,11 +9,9 @@ class OmokGame(
     private val onFinishGame: (Board, OmokStone) -> Unit,
 ) {
     fun play(onStartPut: (Board, OmokStone?) -> Unit) {
-        var event = putEvent.onPutBlack
         while (state !is GameState.Finish) {
             onStartPut(state.board, state.board.lastOrNull())
-            state = state.put(event)
-            event = putEvent.reverse(event)
+            state = state.put(putEvent)
         }
         state.winner?.let { onFinishGame(state.board, it) }
     }

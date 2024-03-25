@@ -13,8 +13,8 @@ class Controller(
     private val state: GameState = GameState.Running.BlackTurn(BlackPutRule, Board(emptyMap())),
     private val event: PutEvent =
         PutEvent(
-            omokView::readPosition,
-            omokView::readPosition,
+            { omokView.readPosition() },
+            { omokView.readPosition() },
         ),
 ) {
     fun start() {
