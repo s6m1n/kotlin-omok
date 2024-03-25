@@ -4,7 +4,7 @@ import omok.model.Board
 import omok.model.event.PutEvent
 
 sealed class GameState(val board: Board) {
-    val winner get() = if (this is Finish) board.lastOrNull() else null
+    val winner get() = if (this is Finish) board.lastStone else null
 
     abstract fun put(putEvent: PutEvent): GameState
 

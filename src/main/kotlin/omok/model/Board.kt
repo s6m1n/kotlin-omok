@@ -1,6 +1,9 @@
 package omok.model
 
 class Board(val stones: Map<Position, OmokStone>) {
+    val lastStone: OmokStone?
+        get() = stones.entries.lastOrNull()?.value
+
     operator fun plus(stone: OmokStone): Board {
         validate(stone.position)
         return Board(stones + (stone.position to stone))
@@ -17,8 +20,6 @@ class Board(val stones: Map<Position, OmokStone>) {
     }
 
     operator fun get(position: Position): OmokStone? = stones[position]
-
-    fun lastOrNull(): OmokStone? = stones.entries.lastOrNull()?.value
 
     fun isInOmok(position: Position): Boolean {
         val stone = stones[position] ?: return false

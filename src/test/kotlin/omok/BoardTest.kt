@@ -24,7 +24,7 @@ class BoardTest {
             )
         val expected = createOmokStone(x = 2, y = 2, color = StoneColor.WHITE)
         // when
-        val actual = board.lastOrNull()
+        val actual = board.lastStone
         // then
         actual shouldBe expected
     }

@@ -10,7 +10,7 @@ class OmokGame(
 ) {
     fun play(onStartPut: (Board, OmokStone?) -> Unit) {
         while (state !is GameState.Finish) {
-            onStartPut(state.board, state.board.lastOrNull())
+            onStartPut(state.board, state.board.lastStone)
             state = state.put(putEvent)
         }
         state.winner?.let { onFinishGame(state.board, it) }
