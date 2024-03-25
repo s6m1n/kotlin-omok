@@ -4,7 +4,7 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import omok.fixtures.createPoint
 import omok.fixtures.createWhiteBoard
 import omok.fixtures.createWhiteStone
-import omok.model.rule.WhiteCanPutRule
+import omok.model.rule.WhitePutRule
 import org.junit.jupiter.api.Test
 
 class WhitePutRuleTest {
@@ -16,7 +16,7 @@ class WhitePutRuleTest {
             )
         val whiteStone = createWhiteStone(1, 2)
         // when
-        val canPut = WhiteCanPutRule.canPut(whiteStone, whiteBoard)
+        val canPut = WhitePutRule.canPut(whiteStone, whiteBoard)
         // then
         canPut.shouldBeFalse()
     }
@@ -26,7 +26,7 @@ class WhitePutRuleTest {
         val whiteBoard = createWhiteBoard()
         val whiteStone = createWhiteStone(0, 0)
         // when
-        val canPut = WhiteCanPutRule.canPut(whiteStone, whiteBoard)
+        val canPut = WhitePutRule.canPut(whiteStone, whiteBoard)
         // then
         canPut.shouldBeFalse()
     }

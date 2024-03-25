@@ -7,7 +7,7 @@ import omok.fixtures.createPoint
 import omok.fixtures.createWhiteBoard
 import omok.fixtures.createWhiteStone
 import omok.model.rule.BlackPutRule
-import omok.model.rule.WhiteCanPutRule
+import omok.model.rule.WhitePutRule
 import org.junit.jupiter.api.Test
 
 class BlackPutRuleTest {
@@ -72,7 +72,7 @@ class BlackPutRuleTest {
             )
         val whiteStone = createWhiteStone(1, 2)
         // when
-        val canPut = WhiteCanPutRule.canPut(whiteStone, whiteBoard)
+        val canPut = WhitePutRule.canPut(whiteStone, whiteBoard)
         // then
         canPut.shouldBeFalse()
     }
@@ -82,7 +82,7 @@ class BlackPutRuleTest {
         val whiteBoard = createWhiteBoard()
         val whiteStone = createWhiteStone(0, 0)
         // when
-        val canPut = WhiteCanPutRule.canPut(whiteStone, whiteBoard)
+        val canPut = WhitePutRule.canPut(whiteStone, whiteBoard)
         // then
         canPut.shouldBeFalse()
     }
