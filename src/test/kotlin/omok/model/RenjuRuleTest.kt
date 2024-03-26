@@ -6,11 +6,11 @@ import omok.fixtures.createBlackStone
 import omok.fixtures.createPoint
 import omok.fixtures.createWhiteBoard
 import omok.fixtures.createWhiteStone
-import omok.model.rule.BlackPutRule
-import omok.model.rule.WhitePutRule
+import omok.model.rule.GeneralStonePlaceRule
+import omok.model.rule.RenjuRule
 import org.junit.jupiter.api.Test
 
-class BlackPutRuleTest {
+class RenjuRuleTest {
     @Test
     fun `장목이면 금수다`() {
         // given
@@ -24,7 +24,7 @@ class BlackPutRuleTest {
             )
         val blackStone = createBlackStone(1, 6)
         // when
-        val canPut = BlackPutRule.canPut(blackStone, blackBoard)
+        val canPut = RenjuRule.canPlace(blackStone, blackBoard)
         // then
         canPut.shouldBeFalse()
     }
@@ -41,7 +41,7 @@ class BlackPutRuleTest {
             )
         val blackStone = createBlackStone(4, 4)
         // when
-        val canPut = BlackPutRule.canPut(blackStone, blackBoard)
+        val canPut = RenjuRule.canPlace(blackStone, blackBoard)
         // then
         canPut.shouldBeFalse()
     }
@@ -59,7 +59,7 @@ class BlackPutRuleTest {
             )
         val blackStone = createBlackStone(1, 1)
         // when
-        val canPut = BlackPutRule.canPut(blackStone, blackBoard)
+        val canPut = RenjuRule.canPlace(blackStone, blackBoard)
         // then
         canPut.shouldBeFalse()
     }
@@ -72,7 +72,7 @@ class BlackPutRuleTest {
             )
         val whiteStone = createWhiteStone(1, 2)
         // when
-        val canPut = WhitePutRule.canPut(whiteStone, whiteBoard)
+        val canPut = GeneralStonePlaceRule.canPlace(whiteStone, whiteBoard)
         // then
         canPut.shouldBeFalse()
     }
@@ -82,7 +82,7 @@ class BlackPutRuleTest {
         val whiteBoard = createWhiteBoard()
         val whiteStone = createWhiteStone(0, 0)
         // when
-        val canPut = WhitePutRule.canPut(whiteStone, whiteBoard)
+        val canPut = GeneralStonePlaceRule.canPlace(whiteStone, whiteBoard)
         // then
         canPut.shouldBeFalse()
     }

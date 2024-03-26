@@ -3,8 +3,8 @@ package omok.model.rule
 import omok.model.Board
 import omok.model.OmokStone
 
-object WhitePutRule : PutRule {
-    override fun canPut(
+abstract class StonePlaceRule {
+    open fun canPlace(
         stone: OmokStone,
         board: Board,
     ): Boolean {

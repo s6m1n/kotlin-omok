@@ -47,7 +47,7 @@ class BoardTest {
     @CsvSource(value = ["0:0", "16:16", "0:16", "16:0"], delimiter = ':')
     fun `오목판의 범위를 벗어나는 위치에 돌을 놓을 수 없다`(
         x: Int,
-        y: Int
+        y: Int,
     ) {
         // given
         val board = createBoard()

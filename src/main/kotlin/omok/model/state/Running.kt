@@ -2,10 +2,10 @@ package omok.model.state
 
 import omok.model.Board
 import omok.model.OmokStone
-import omok.model.rule.PutRule
+import omok.model.rule.StonePlaceRule
 
-sealed class Running(private val putRule: PutRule, board: Board) : GameState(board) {
+sealed class Running(private val stonePlaceRule: StonePlaceRule, board: Board) : GameState(board) {
     protected fun canPut(stone: OmokStone): Boolean {
-        return putRule.canPut(stone, board)
+        return stonePlaceRule.canPlace(stone, board)
     }
 }

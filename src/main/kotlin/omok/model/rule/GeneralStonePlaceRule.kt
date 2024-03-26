@@ -3,9 +3,9 @@ package omok.model.rule
 import omok.model.Board
 import omok.model.OmokStone
 
-interface PutRule {
-    fun canPut(
+object GeneralStonePlaceRule : StonePlaceRule() {
+    override fun canPlace(
         stone: OmokStone,
         board: Board,
-    ): Boolean
+    ): Boolean = super.canPlace(stone, board)
 }
