@@ -30,7 +30,7 @@ class BoardTest {
     }
 
     @Test
-    fun `좌표에 해당하는 오목판 위치에 돌을 놓을 수 있다`() {
+    fun `오목판 범위 내 좌표에 돌을 추가할 수 있다`() {
         // given
         val board = createBoard()
         val point = createPoint(1, 1)
@@ -44,8 +44,24 @@ class BoardTest {
     }
 
     @ParameterizedTest
+    @CsvSource(value = ["0:0", "16:16", "0:16", "16:0"], delimiter = ':')
+    fun `오목판의 범위를 벗어나는 위치에 돌을 놓을 수 없다`(
+        x: Int,
+        y: Int
+    ) {
+        // given
+        val board = createBoard()
+        val newStone = OmokStone(createPoint(x, y), StoneColor.BLACK)
+        val expect = false
+        // when
+        val actual = board.isInRange(newStone)
+        // then
+        actual shouldBe expect
+    }
+
+    @ParameterizedTest
     @CsvSource(value = ["1:1", "2:2", "3:3", "4:4", "5:5"], delimiter = ':')
-    fun `오른쪽 연속 5개의 돌이 있으면 오목이다`(
+    fun `대각선으로 연속 5개의 돌이 있으면 오목이다`(
         x: Int,
         y: Int,
     ) {
@@ -57,6 +73,48 @@ class BoardTest {
                 createPoint(3, 3),
                 createPoint(4, 4),
                 createPoint(5, 5),
+            )
+        // when
+        val actual = board.isInOmok(createPoint(x, y))
+        // then
+        actual.shouldBeTrue()
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1:1", "2:1", "3:1", "4:1", "5:1"], delimiter = ':')
+    fun `가로로 5개의 돌이 있으면 오목이다`(
+        x: Int,
+        y: Int,
+    ) {
+        // given
+        val board =
+            createBlackBoard(
+                createPoint(1, 1),
+                createPoint(2, 1),
+                createPoint(3, 1),
+                createPoint(4, 1),
+                createPoint(5, 1),
+            )
+        // when
+        val actual = board.isInOmok(createPoint(x, y))
+        // then
+        actual.shouldBeTrue()
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1:1", "1:2", "1:3", "1:4", "1:5"], delimiter = ':')
+    fun `세로로 연속 5개의 돌이 있으면 오목이다`(
+        x: Int,
+        y: Int,
+    ) {
+        // given
+        val board =
+            createBlackBoard(
+                createPoint(1, 1),
+                createPoint(1, 2),
+                createPoint(1, 3),
+                createPoint(1, 4),
+                createPoint(1, 5),
             )
         // when
         val actual = board.isInOmok(createPoint(x, y))
