@@ -2,10 +2,9 @@ package omok.view
 
 import omok.model.Board
 import omok.model.OmokStone
-import omok.model.Position
 import omok.model.StoneColor
 
-object ConsoleOmokView : OmokView {
+object ConsoleOmokOutputView : OmokOutputView {
     override fun showStartMessage() {
         println("오목 게임을 시작합니다.")
     }
@@ -60,17 +59,6 @@ object ConsoleOmokView : OmokView {
         val color = getColor(stone)
         println("축하합니다! %s이(가) 이겼습니다.".format(color))
     }
-
-    override fun readPosition(): Position {
-        print("위치를 입력하세요 : ")
-        val input = readln().trim()
-        val inputX = input.firstOrNull()?.formatToPositionX() ?: return readPosition()
-        val inputY = input.substring(1).toIntOrNull() ?: return readPosition()
-        val (x, y) = inputX to inputY
-        return Position.of(x, y)
-    }
-
-    private fun Char.formatToPositionX(): Int = uppercase().first() - 'A' + 1
 
     private fun Int.formatToPositionX(): String = (this + 'A'.code - 1).toChar().toString()
 
